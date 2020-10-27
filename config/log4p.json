@@ -1,0 +1,37 @@
+{
+    "version": 1,
+    "disable_existing_loggers": false,
+    "formatters": {
+        "simple": {
+            "format": "%(asctime)s - %(filename)s line+%(lineno)d - %(levelname)s - %(message)s"
+        },
+        "detail": {
+            "format": "%(asctime)-15s %(levelname)-5s %(filename)s line+%(lineno)d %(funcName)s [%(threadName)s]: %(message)s"
+        }
+    },
+
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "level": "INFO",
+            "formatter": "simple",
+            "stream": "ext://sys.stdout"
+        },
+
+        "file_handler": {
+            "class": "logging.handlers.TimedRotatingFileHandler",
+            "level": "INFO",
+            "formatter": "detail",
+            "filename": "/Users/hsnam/.project/python/logs.log",
+            "when": "midnight",
+            "interval": 1,
+            "backupCount": 30,
+            "encoding": "utf8"
+        }
+    },
+
+    "root": {
+        "level": "INFO",
+        "handlers": ["console", "file_handler"]
+    }
+}
